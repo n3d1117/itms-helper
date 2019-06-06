@@ -9,7 +9,7 @@ import Vapor
 
 // Response struct
 struct Response: Content {
-    var location: String
+    var uuid: String
 }
 
 enum Util {

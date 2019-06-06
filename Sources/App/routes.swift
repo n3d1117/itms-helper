@@ -8,7 +8,8 @@ public func routes(_ router: Router) throws {
             throw Abort(.badRequest)
         }
 
-        let filename = UUID().uuidString + ".plist"
+        let uuid = UUID().uuidString
+        let filename = uuid + ".plist"
         let saveURL = Util.getPlistsFolder().appendingPathComponent(filename, isDirectory: false)
 
         let data = Util.getPlist(bundle: bundle, link: link)
@@ -23,6 +24,6 @@ public func routes(_ router: Router) throws {
             throw Abort(.badRequest)
         }
 
-        return Response(location: ("plists/" + saveURL.lastPathComponent))
+        return Response(uuid: uuid)
     }
 }
