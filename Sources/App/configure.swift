@@ -3,15 +3,41 @@ import Vapor
 /// Called before your application initializes.
 ///
 /// [Learn More →](https://docs.vapor.codes/3.0/getting-started/structure/#configureswift)
-public func configure(
-    _ config: inout Config,
-    _ env: inout Environment,
-    _ services: inout Services
-) throws {
+
+private var cleanupTimer: DispatchSourceTimer?
+
+public func configure(_ config: inout Config, _ env: inout Environment, _ services: inout Services) throws {
+
     // Register routes to the router
     let router = EngineRouter.default()
     try routes(router)
     services.register(router, as: Router.self)
 
     // Configure the rest of your application here
+    var middleware = MiddlewareConfig.default()
+    middleware.use(FileMiddleware.self)
+    services.register(middleware)
+
+    // Configure cleanup timer
+    cleanupTimer = DispatchSource.makeTimerSource()
+    cleanupTimer?.setEventHandler {
+        do {
+            // Clean up plists folder
+            let directory = DirectoryConfig.detect().workDir
+            let plists = URL(fileURLWithPath: directory).appendingPathComponent("Public/plists", isDirectory: true)
+            let contents = try FileManager.default.contentsOfDirectory(at: plists, includingPropertiesForKeys: nil)
+            for file in contents {
+                try FileManager.default.removeItem(at: file)
+            }
+        } catch { }
+    }
+    // Run every 12 hours
+    cleanupTimer?.schedule(deadline: .now() + .seconds(86_400), repeating: .seconds(86_400))
+
+    // Start timer
+    if #available(OSX 10.12, *) {
+        cleanupTimer?.activate()
+    } else {
+        cleanupTimer?.resume()
+    }
 }

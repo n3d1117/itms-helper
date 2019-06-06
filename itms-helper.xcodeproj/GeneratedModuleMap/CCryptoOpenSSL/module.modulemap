@@ -1,0 +1,4 @@
+module CCryptoOpenSSL {
+    umbrella "/Users/ned/Desktop/server/itms-helper/.build/checkouts/crypto/Sources/CCryptoOpenSSL/include"
+    export *
+}

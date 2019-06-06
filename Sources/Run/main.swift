@@ -20,6 +20,7 @@ do {
     try App.boot(app)
     
     try app.run()
+
 } catch {
     print(error)
     exit(1)

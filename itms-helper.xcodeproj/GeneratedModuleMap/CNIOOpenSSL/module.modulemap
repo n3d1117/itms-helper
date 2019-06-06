@@ -1,0 +1,4 @@
+module CNIOOpenSSL {
+    umbrella "/Users/ned/Desktop/server/itms-helper/.build/checkouts/swift-nio-ssl/Sources/CNIOOpenSSL/include"
+    export *
+}
