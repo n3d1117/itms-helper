@@ -15,7 +15,9 @@ public func routes(_ router: Router) throws {
 
         do {
             try FileManager.default.createDirectory(at: Util.getPlistsFolder(), withIntermediateDirectories: true, attributes: nil)
-        } catch {}
+        } catch {
+            throw Abort(.badRequest)
+        }
         
         guard FileManager.default.createFile(atPath: saveURL.path, contents: data, attributes: nil) else {
             throw Abort(.badRequest)
