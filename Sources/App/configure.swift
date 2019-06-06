@@ -23,9 +23,7 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     cleanupTimer?.setEventHandler {
         do {
             // Clean up plists folder
-            let directory = DirectoryConfig.detect().workDir
-            let plists = URL(fileURLWithPath: directory).appendingPathComponent("Public/plists", isDirectory: true)
-            let contents = try FileManager.default.contentsOfDirectory(at: plists, includingPropertiesForKeys: nil)
+            let contents = try FileManager.default.contentsOfDirectory(at: Util.getPlistsFolder(), includingPropertiesForKeys: nil)
             for file in contents {
                 try FileManager.default.removeItem(at: file)
             }
