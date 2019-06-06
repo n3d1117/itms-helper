@@ -2,7 +2,6 @@ import Routing
 import Vapor
 
 /// Register your application's routes here.
-
 public func routes(_ router: Router) throws {
     router.get("request") { req -> Response in
         guard let bundle = req.query[String.self, at: "bundle"], let link = req.query[String.self, at: "link"] else {

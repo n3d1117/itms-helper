@@ -8,7 +8,6 @@
 import Vapor
 
 // Response struct
-
 struct Response: Content {
     var location: String
 }
@@ -21,7 +20,6 @@ enum Util {
     }
 
     // Returns plist file Data with given bundle and url string
-    
     static func getPlist(bundle: String, link: String) -> Data {
         let stringData = """
         <?xml version="1.0" encoding="UTF-8"?>
