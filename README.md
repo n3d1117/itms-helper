@@ -1,7 +1,7 @@
 # 📤 ITMS Helper
 
 ## What's this?
-ITMS Helper provides a free API to generate and serve custom `.plist` files, useful for <b>OTA</b> (Over-The-Air) deployment of iOS Apps.
+ITMS Helper is a small web app powered by [Vapor 3](https://vapor.codes) that provides a free API to generate and serve custom `.plist` files, useful for <b>OTA</b> (Over-The-Air) deployment of iOS Apps.
 
 ## Why did you make this?
 The `.plist` files used for OTA deployment <b>must</b> be served with HTTPS protocol, and [Vapor Cloud](https://vapor.cloud/) hosting includes it by default.
@@ -28,7 +28,15 @@ Visit this URL from your device (copy and paste it in Safari) and you'll be prom
 `itms-services://?action=download-manifest&url=https://itms-plist-helper.vapor.cloud/plists/{THAT_UUID}.plist⁣`
 
 ## Is there a limit on API requests?
-Yes. This app is hosted on [Vapor Cloud](https://vapor.cloud/)'s free tier, which allows up to 2,000 requests per month.
+<b>Yes.</b> This app is hosted on [Vapor Cloud](https://vapor.cloud/)'s free tier, which allows up to 2,000 requests per month.
+
+## Can I build and run this project manually?
+Of course! Make sure you have [Vapor 3](https://docs.vapor.codes/3.0/install/macos/) installed and run the following commands:
+```
+$ git clone https://github.com/n3d1117/itms-helper.git
+$ cd itms-helper/
+$ vapor update && vapor build && vapor run serve
+```
 
 ## License
 See [LICENSE](LICENSE) file for further information. Feel free to contribute in any way you want.
