@@ -1,4 +1,5 @@
 import Vapor
+import Leaf
 
 private var cleanupTimer: DispatchSourceTimer?
 
@@ -10,7 +11,11 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     try routes(router)
     services.register(router, as: Router.self)
 
-    // Configure the rest of your application here
+    // Register Leaf
+    try services.register(LeafProvider())
+    config.prefer(LeafRenderer.self, for: ViewRenderer.self)
+
+    // Static file serving
     var middleware = MiddlewareConfig.default()
     middleware.use(FileMiddleware.self)
     services.register(middleware)

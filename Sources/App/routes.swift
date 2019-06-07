@@ -3,6 +3,11 @@ import Vapor
 
 /// Register your application's routes here.
 public func routes(_ router: Router) throws {
+
+    router.get { req -> Future<View> in
+        return try req.view().render("home", [String: String]())
+    }
+
     router.get("request") { req -> Response in
 
         guard let bundle = req.query[String.self, at: "bundle"], let link = req.query[String.self, at: "link"], let title = req.query[String.self, at: "title"] else {
