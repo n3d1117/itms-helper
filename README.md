@@ -1,5 +1,7 @@
 # 📤 ITMS Helper
 
+<img alt="Screenshot" src="https://user-images.githubusercontent.com/11541888/59136187-44879200-8982-11e9-88a0-d1f47f358987.png">
+
 ## What's this?
 ITMS Helper is a small web app powered by [Vapor 3](https://vapor.codes) that provides a free API to generate and serve custom `.plist` files, useful for <b>OTA</b> (Over-The-Air) deployment of iOS Apps.
 
