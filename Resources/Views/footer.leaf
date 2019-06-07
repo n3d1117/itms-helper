@@ -1,0 +1,6 @@
+<footer class="footer">
+    <div role="footer" class="container">
+        <span class="text-muted">Hosted with <a href="https://vapor.cloud" target="_blank">Vapor Cloud</a>.</span>
+        <span class="float-right"><a href="https://github.com/n3d1117/itms-helper" target="_blank"><img src="/github.png" height=36 style="margin-top:12px"></a></span>
+    </div>
+</footer>

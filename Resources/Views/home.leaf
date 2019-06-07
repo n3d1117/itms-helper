@@ -1,1 +1,94 @@
-hi
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>ITMS Helper</title>
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+
+        #embed("header")
+        
+        <main role="main" class="container">
+
+            <h4 class="mt-4">Demo</h4>
+            <div class="row">
+                <form class="demo-form mt-2 col">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="inputLink" aria-describedby="link" placeholder="Direct .ipa link">
+                        <small id="link-help" class="form-text text-muted">The <code>.ipa</code> must be already signed for your device. URL can be local and/or HTTP.</small>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="inputBundle" placeholder="Bundle identifier">
+                        <small id="bundle-help" class="form-text text-muted">e.g <i>com.apple.Maps</i></small>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="inputTitle" placeholder="App title">
+                    </div>
+                    <button type="submit" class="generate-btn btn btn-primary" disabled>Generate</button>
+                    <p class="completion-text ml-2 mt-3 d-inline-block text-muted hidden">Done! <code>.plist</code> is <a class="completion-url" target="_blank" href="">here</a>. Click <a class="completion-itms-url" href="">here</a> to install directly.</p>
+                </form>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 col-md-6">
+                    <h4 class="mt-3">What's this?</h4>
+                    <p class="mt-2">ITMS Helper provides a free API to generate and serve custom <code>.plist</code> files, useful for <b>OTA</b> (Over-The-Air) deployment of iOS Apps.</p>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <h4 class="mt-4">Why did you make this?</h4>
+                    <p class="mt-2">The <code>.plist</code> files used for OTA deployment <b>must</b> be served with HTTPS protocol, and <a href="https://vapor.cloud">Vapor Cloud</a> hosting includes it by default.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <h4 class="mt-4">What are the requirements?</h4>
+                    <p class="mt">
+                        <ul>
+                            <li> A <b>direct link</b> to a <code>.ipa</code> file that is already signed for your device. The link can be HTTP, and you can even use a local server to serve the file (e.g <code>http://127.0.0.1:8080/file.ipa</code>).</li>
+                            <li>The <b>bundle identifier</b> of the <code>.ipa</code> file you're installing (e.g <code>com.apple.Maps</code>).</li>
+                            <li>The <b>name</b> of the app. Can be any string.</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <h4 class="mt-4">How can I use the APIs?</h4>
+                    <p class="mt-2">
+                    <ul>
+                        <li>Send a <b>HTTP GET</b> request to <code>/request</code> with parameters <code>link</code> (link to the .ipa file), <code>bundle</code> (bundle identifier) and <code>title</code> (name of the app).</li>
+                        <li>If all parameters are correct, the response will be a <b>JSON</b> object containing a <code>uuid</code> field.</li>
+                        <li>The <code>.plist</code> file will then be located at <code>https://itms-plist-helper.vapor.cloud/plists/{<b>uuid</b>}.plist</code></li>
+                    </ul>
+                    Note that all <code>.plist</code> files are kept on the server for a maximum of 24 hours.
+                    </p>
+                    <p><b>Example request</b>:<br><code>https://itms-plist-helper.vapor.cloud/request?<b>link</b>=http://example.com/file.ipa&<b>bundle</b>=sample.app.bundle&<b>title</b>=some%20title</code>&#8291;</p>
+                    <p><b>Example response</b>:<br><code>{ "uuid": "<b>SOME_UUID</b>" }</code> in JSON format.</p>
+                    <p><b>Further steps</b>:<br>Visit this URL from your device (copy and paste it in Safari) and you'll be prompted to install the app: <br><code>itms-services://?action=download-manifest&url=https://itms-plist-helper.vapor.cloud/plists/{<b>THAT_UUID</b>}.plist</code>&#8291;</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-md-6">
+                    <h4 class="mt-4">Is there a limit on API requests?</h4>
+                    <p class="mt-2"><b>Yes</b>. This app is hosted on <a href="https://vapor.cloud">Vapor Cloud</a>'s free tier, which allows up to 2,000 requests per month.</p>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <h4 class="mt-4">How can I contribute?</h4>
+                    <p class="mt-2">This project is <b>open source</b> and available <a href="https://github.com/n3d1117/itms-helper" target="_blank"> on GitHub</a> under MIT license. Feel free to contribute in any way you want.</p>
+                </div>
+            </div>
+        </main>
+
+        #embed("footer")
+
+        <!-- Bootstrap core JavaScript -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="/index.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    </body>
+</html>
