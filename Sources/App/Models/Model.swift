@@ -20,7 +20,7 @@ enum Util {
     }
 
     // Returns plist file Data with given bundle and url string
-    static func getPlist(bundle: String, link: String) -> Data {
+    static func getPlist(bundle: String, link: String, title: String) -> Data {
         let stringData = """
         <?xml version="1.0" encoding="UTF-8"?>
         <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -47,7 +47,7 @@ enum Util {
                         <key>kind</key>
                         <string>software</string>
                         <key>title</key>
-                        <string></string>
+                        <string>\(title)</string>
                     </dict>
                 </dict>
             </array>
