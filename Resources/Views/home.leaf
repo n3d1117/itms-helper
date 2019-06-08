@@ -1,10 +1,14 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta name="description" content="Automatically generate .plist files for iOS OTA distribution">
+        <meta name="keywords" content="plist,iOS,OTA,itms-services,Vapor">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>ITMS Helper</title>
+        <title>ITMS Helper - Automatically generate .plist files for iOS OTA distribution</title>
+
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
         <link rel="stylesheet" href="/style.css">
     </head>
     <body>
@@ -12,7 +16,6 @@
         #embed("header")
         
         <main role="main" class="container">
-
             <h4 class="mt-4">Demo</h4>
             <div class="row">
                 <form class="demo-form mt-2 col">
@@ -47,7 +50,7 @@
                     <h4 class="mt-4">What are the requirements?</h4>
                     <p class="mt">
                         <ul>
-                            <li> A <b>direct link</b> to a <code>.ipa</code> file that is already signed for your device. The link can be HTTP, and you can even use a local server to serve the file (e.g <code>http://127.0.0.1:8080/file.ipa</code>).</li>
+                            <li>A <b>direct link</b> to a <code>.ipa</code> file that is already signed for your device. The link can be HTTP, and you can even use a local server to serve the file (e.g <code>http://127.0.0.1:8080/file.ipa</code>).</li>
                             <li>The <b>bundle identifier</b> of the <code>.ipa</code> file you're installing (e.g <code>com.apple.Maps</code>).</li>
                             <li>The <b>name</b> of the app. Can be any string.</li>
                         </ul>
@@ -84,9 +87,10 @@
 
         #embed("footer")
 
+        <script src="/index.js"></script>
+
         <!-- Bootstrap core JavaScript -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="/index.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
