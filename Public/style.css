@@ -26,5 +26,6 @@ code {
 
 .hidden {
     visibility: hidden;
+    position: fixed;
 }
 

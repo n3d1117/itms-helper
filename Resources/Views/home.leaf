@@ -31,7 +31,7 @@
                         <input type="text" class="form-control" id="inputTitle" placeholder="App title">
                     </div>
                     <button type="submit" class="generate-btn btn btn-primary" disabled>Generate</button>
-                    <p class="completion-text ml-2 mt-3 d-inline-block text-muted hidden">Done! <code>.plist</code> is <a class="completion-url" target="_blank" href="">here</a>. Click <a class="completion-itms-url" href="">here</a> to install directly.</p>
+                    <p class="completion-text ml-2 mt-3 mb-0 d-inline-block text-muted hidden">Done! <code>.plist</code> is <a class="completion-url" target="_blank" href="">here</a>. Click <a class="completion-itms-url" href="">here</a> to install directly.</p>
                 </form>
             </div>
 
