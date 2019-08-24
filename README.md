@@ -11,16 +11,16 @@ The `.plist` files used for OTA deployment <b>must</b> be served with HTTPS prot
 ## What are the requirements?
 * A <b>direct link</b> to a `.ipa` file that is already signed for your device. The link can be HTTP, and you can even use a local server to serve the file (e.g `http://127.0.0.1:8080/file.ipa`).
 * The <b>bundle identifier</b> of the `.ipa` file you're installing (e.g `com.apple.Maps`).
-* The <b>name</b> of the app. Can be any string.
+* The <b>name</b> and <b>version</b> of the app (version is optional). Can be any string.
 
 ## How can I use the APIs?
-* Send a <b>HTTP GET</b> request to `https://itms-plist-helper.vapor.cloud/request` with parameters `link` (link to the `.ipa` file), `bundle` (bundle identifier) and `title` (name of the app).
+* Send a <b>HTTP GET</b> request to `https://itms-plist-helper.vapor.cloud/request` with parameters `link` (link to the `.ipa` file), `bundle` (bundle identifier), `title` (name of the app) and `version` (bundle version, optional).
 * If all parameters are correct, the response will be a <b>JSON</b> object containing a `uuid` field.
 * The .plist file will then be located at `https://itms-plist-helper.vapor.cloud/plists/{uuid}.plist`
 Note that all `.plist` files are kept on the server for a maximum of 24 hours.
 
 ### Example request:
-`https://itms-plist-helper.vapor.cloud/request?link=http://example.com/file.ipa&bundle=sample.app.bundle&title=some%20title⁣`
+`https://itms-plist-helper.vapor.cloud/request?link=http://example.com/file.ipa&bundle=sample.app.bundle&title=some%20title&version=1.0⁣`
 
 ### Example response:
 `{ "uuid": "SOME_UUID" }` in JSON format.
