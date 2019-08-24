@@ -18,7 +18,12 @@ public func routes(_ router: Router) throws {
         let filename = uuid + ".plist"
         let saveURL = Util.getPlistsFolder().appendingPathComponent(filename, isDirectory: false)
 
-        let data = Util.getPlist(bundle: bundle, link: link, title: title)
+        var data: Data!
+        if let version = req.query[String.self, at: "version"], !version.isEmpty {
+            data = Util.getPlist(bundle: bundle, link: link, title: title, version: version)
+        } else {
+            data = Util.getPlist(bundle: bundle, link: link, title: title)
+        }
 
         do {
             try FileManager.default.createDirectory(at: Util.getPlistsFolder(), withIntermediateDirectories: true, attributes: nil)

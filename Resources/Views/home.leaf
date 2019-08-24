@@ -30,6 +30,9 @@
                     <div class="form-group">
                         <input type="text" class="form-control" id="inputTitle" placeholder="App title">
                     </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="inputVersion" placeholder="App version (optional)">
+                    </div>
                     <button type="submit" class="generate-btn btn btn-primary" disabled>Generate</button>
                     <p class="completion-text ml-2 mt-3 mb-0 d-inline-block text-muted hidden">Done! <code>.plist</code> is <a class="completion-url" target="_blank" href="">here</a>. Click <a class="completion-itms-url" href="">here</a> to install directly.</p>
                 </form>
@@ -52,7 +55,7 @@
                         <ul>
                             <li>A <b>direct link</b> to a <code>.ipa</code> file that is already signed for your device. The link can be HTTP, and you can even use a local server to serve the file (e.g <code>http://127.0.0.1:8080/file.ipa</code>).</li>
                             <li>The <b>bundle identifier</b> of the <code>.ipa</code> file you're installing (e.g <code>com.apple.Maps</code>).</li>
-                            <li>The <b>name</b> of the app. Can be any string.</li>
+                            <li>The <b>name</b> and <b>version</b> of the app (version is optional). Can be any string.</li>
                         </ul>
                     </p>
                 </div>
@@ -62,13 +65,13 @@
                     <h4 class="mt-4">How can I use the APIs?</h4>
                     <p class="mt-2">
                     <ul>
-                        <li>Send a <b>HTTP GET</b> request to <code>/request</code> with parameters <code>link</code> (link to the .ipa file), <code>bundle</code> (bundle identifier) and <code>title</code> (name of the app).</li>
+                        <li>Send a <b>HTTP GET</b> request to <code>/request</code> with parameters <code>link</code> (link to the .ipa file), <code>bundle</code> (bundle identifier), <code>title</code> (name of the app) and <code>version</code> (bundle version, optional).</li>
                         <li>If all parameters are correct, the response will be a <b>JSON</b> object containing a <code>uuid</code> field.</li>
                         <li>The <code>.plist</code> file will then be located at <code>https://itms-plist-helper.vapor.cloud/plists/{<b>uuid</b>}.plist</code></li>
                     </ul>
                     Note that all <code>.plist</code> files are kept on the server for a maximum of 24 hours.
                     </p>
-                    <p><b>Example request</b>:<br><code>https://itms-plist-helper.vapor.cloud/request?<b>link</b>=http://example.com/file.ipa&<b>bundle</b>=sample.app.bundle&<b>title</b>=some%20title</code>&#8291;</p>
+                    <p><b>Example request</b>:<br><code>https://itms-plist-helper.vapor.cloud/request?<b>link</b>=http://example.com/file.ipa&<b>bundle</b>=sample.app.bundle&<b>title</b>=some%20title&<b>version</b>=1.0</code>&#8291;</p>
                     <p><b>Example response</b>:<br><code>{ "uuid": "<b>SOME_UUID</b>" }</code> in JSON format.</p>
                     <p><b>Further steps</b>:<br>Visit this URL from your device (copy and paste it in Safari) and you'll be prompted to install the app: <br><code>itms-services://?action=download-manifest&url=https://itms-plist-helper.vapor.cloud/plists/{<b>THAT_UUID</b>}.plist</code>&#8291;</p>
                 </div>

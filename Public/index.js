@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		let link = $('#inputLink').val();
 		let bundle = $('#inputBundle').val();
 		let title = $('#inputTitle').val();
+        let version = $('#inputVersion').val();
 
 		if (isURL(link) && bundle && title) {
 			$(".generate-btn").removeAttr('disabled');
@@ -22,9 +23,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		let link = $('#inputLink').val();
 		let bundle = $('#inputBundle').val();
 		let title = $('#inputTitle').val();
+        let version = $('#inputVersion').val();
 
 		// Call API
-		$.getJSON(`request?link=${link}&bundle=${bundle}&title=${title}`, function(response) {
+		$.getJSON(`request?link=${link}&bundle=${bundle}&title=${title}&version=${version}`, function(response) {
 			$(".completion-text").removeClass("hidden");
 			$(".completion-url").attr("href", `plists/${response.uuid}.plist`)
 			$(".completion-itms-url").attr("href", `itms-services://?action=download-manifest&url=https://itms-plist-helper.vapor.cloud/plists/${response.uuid}.plist`)
