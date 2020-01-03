@@ -9,6 +9,16 @@ do {
     var env = try Environment.detect()
     var services = Services.default()
     
+    var serverConfig: NIOServerConfig = NIOServerConfig.default(hostname: "0.0.0.0")
+
+    if let portString = ProcessInfo.processInfo.environment["PORT"],
+        let port = Int(portString) {
+        serverConfig = NIOServerConfig.default(hostname: "0.0.0.0", port: port)
+        services.register { container in
+            return serverConfig
+        }
+    }
+    
     try App.configure(&config, &env, &services)
     
     let app = try Application(

@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-sm-6 col-md-6">
                     <h4 class="mt-4">Why did you make this?</h4>
-                    <p class="mt-2">The <code>.plist</code> files used for OTA deployment <b>must</b> be served with HTTPS protocol, and <a href="https://vapor.cloud">Vapor Cloud</a> hosting includes it by default.</p>
+                    <p class="mt-2">The <code>.plist</code> files used for OTA deployment <b>must</b> be served with HTTPS protocol, and <a href="https://heroku.com">Heroku</a> hosting includes it by default.</p>
                 </div>
             </div>
             <div class="row">
@@ -67,19 +67,19 @@
                     <ul>
                         <li>Send a <b>HTTP GET</b> request to <code>/request</code> with parameters <code>link</code> (link to the .ipa file), <code>bundle</code> (bundle identifier), <code>title</code> (name of the app) and <code>version</code> (bundle version, optional).</li>
                         <li>If all parameters are correct, the response will be a <b>JSON</b> object containing a <code>uuid</code> field.</li>
-                        <li>The <code>.plist</code> file will then be located at <code>https://itms-plist-helper.vapor.cloud/plists/{<b>uuid</b>}.plist</code></li>
+                        <li>The <code>.plist</code> file will then be located at <code>https://itms-plist-helper.herokuapp.com/plists/{<b>uuid</b>}.plist</code></li>
                     </ul>
                     Note that all <code>.plist</code> files are kept on the server for a maximum of 24 hours.
                     </p>
-                    <p><b>Example request</b>:<br><code>https://itms-plist-helper.vapor.cloud/request?<b>link</b>=http://example.com/file.ipa&<b>bundle</b>=sample.app.bundle&<b>title</b>=some%20title&<b>version</b>=1.0</code>&#8291;</p>
+                    <p><b>Example request</b>:<br><code>https://itms-plist-helper.herokuapp.com/request?<b>link</b>=http://example.com/file.ipa&<b>bundle</b>=sample.app.bundle&<b>title</b>=some%20title&<b>version</b>=1.0</code>&#8291;</p>
                     <p><b>Example response</b>:<br><code>{ "uuid": "<b>SOME_UUID</b>" }</code> in JSON format.</p>
-                    <p><b>Further steps</b>:<br>Visit this URL from your device (copy and paste it in Safari) and you'll be prompted to install the app: <br><code>itms-services://?action=download-manifest&url=https://itms-plist-helper.vapor.cloud/plists/{<b>THAT_UUID</b>}.plist</code>&#8291;</p>
+                    <p><b>Further steps</b>:<br>Visit this URL from your device (copy and paste it in Safari) and you'll be prompted to install the app: <br><code>itms-services://?action=download-manifest&url=https://itms-plist-helper.herokuapp.com/plists/{<b>THAT_UUID</b>}.plist</code>&#8291;</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6 col-md-6">
                     <h4 class="mt-4">Is there a limit on API requests?</h4>
-                    <p class="mt-2"><b>Yes</b>. This app is hosted on <a href="https://vapor.cloud">Vapor Cloud</a>'s free tier, which allows up to 2,000 requests per month.</p>
+                    <p class="mt-2"><b>Yes</b>. This app is hosted on <a href="https://heroku.com">Heroku</a>'s free tier, so restrictions may apply.</p>
                 </div>
                 <div class="col-sm-6 col-md-6">
                     <h4 class="mt-4">How can I contribute?</h4>

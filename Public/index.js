@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		$.getJSON(`request?link=${link}&bundle=${bundle}&title=${title}&version=${version}`, function(response) {
 			$(".completion-text").removeClass("hidden");
 			$(".completion-url").attr("href", `plists/${response.uuid}.plist`)
-			$(".completion-itms-url").attr("href", `itms-services://?action=download-manifest&url=https://itms-plist-helper.vapor.cloud/plists/${response.uuid}.plist`)
+			$(".completion-itms-url").attr("href", `itms-services://?action=download-manifest&url=https://itms-plist-helper.herokuapp.com/plists/${response.uuid}.plist`)
 		});
 	});
 	
